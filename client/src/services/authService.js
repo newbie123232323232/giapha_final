@@ -23,3 +23,8 @@ export const getUserProfile = (token) =>
       headers: { Authorization: `Bearer ${token}` },
     })
     .then((res) => res.data);
+
+export const updateProfile = (data, token) =>
+  axios.put(`${API_URL}/update-profile`, data, {
+    headers: { Authorization: `Bearer ${token}` },
+  });

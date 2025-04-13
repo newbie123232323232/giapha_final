@@ -18,6 +18,8 @@ router.post('/login', validateLogin, authController.login);
 // Đổi mật khẩu (cần đăng nhập)
 router.put('/change-password', authMiddleware, validateChangePassword, authController.changePassword);
 
+// Cập nhật thông tin cá nhân
+router.put('/update-profile', authMiddleware, authController.updateProfile);
 
 // Xóa tài khoản
 router.delete('/delete-account', authMiddleware, authController.deleteAccount);

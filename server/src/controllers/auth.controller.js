@@ -145,10 +145,46 @@ const getCurrentUser = async (req, res) => {
 };
   
 
+// Cập nhật thông tin cá nhân
+const updateProfile = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const { HoTen, Email, NgaySinh, GioiTinh, Avatar } = req.body;
+
+    const user = await User.findByPk(userId);
+    if (!user) {
+      return res.status(404).json({ message: 'Người dùng không tồn tại.' });
+    }
+
+    // Kiểm tra email mới có trùng với email của người dùng khác không
+    if (Email && Email !== user.Email) {
+      const existingUser = await User.findOne({ where: { Email } });
+      if (existingUser) {
+        return res.status(400).json({ message: 'Email đã được sử dụng.' });
+      }
+    }
+
+    // Cập nhật thông tin
+    if (HoTen !== undefined) user.HoTen = HoTen;
+    if (Email !== undefined) user.Email = Email;
+    if (NgaySinh !== undefined) user.NgaySinh = NgaySinh;
+    if (GioiTinh !== undefined) user.GioiTinh = GioiTinh;
+    if (Avatar !== undefined) user.Avatar = Avatar;
+
+    await user.save();
+
+    res.status(200).json({ message: 'Cập nhật thông tin thành công.' });
+  } catch (error) {
+    console.error('Lỗi khi cập nhật thông tin:', error);
+    res.status(500).json({ message: 'Cập nhật thông tin thất bại.' });
+  }
+};
+
 module.exports = {
   register,
   login,
   changePassword,
   deleteAccount,
-  getCurrentUser
+  getCurrentUser,
+  updateProfile
 };

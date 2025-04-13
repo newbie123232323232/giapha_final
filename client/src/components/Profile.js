@@ -1,34 +1,37 @@
-import { useState, useEffect } from 'react'; // 🟡 Thêm useState, useEffect
+import { useState, useEffect } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { changePassword, deleteAccount, getUserProfile } from '../services/authService'; // 🟡 Thêm getUserProfile
+import { changePassword, deleteAccount, getUserProfile, updateProfile } from '../services/authService';
 import { getToken, removeToken } from '../utils/auth';
 import { useNavigate } from 'react-router-dom';
 
 const Profile = () => {
   const navigate = useNavigate();
   const token = getToken();
-  const [initialValues, setInitialValues] = useState({
-    oldPassword: '',
-    newPassword: '',
+  const [profileValues, setProfileValues] = useState({
     HoTen: '',
     Email: '',
     NgaySinh: '',
     GioiTinh: '',
     Avatar: '',
-  }); // 🟡 Thêm state cho initialValues
+  });
 
-  // 🟡 Lấy thông tin user khi component mount
+  const [passwordValues, setPasswordValues] = useState({
+    oldPassword: '',
+    newPassword: '',
+  });
+
+  const [profileStatus, setProfileStatus] = useState('');
+  const [passwordStatus, setPasswordStatus] = useState('');
+
   useEffect(() => {
     const fetchProfile = async () => {
       try {
         const data = await getUserProfile(token);
-        setInitialValues({
-          oldPassword: '',
-          newPassword: '',
+        setProfileValues({
           HoTen: data.HoTen || '',
           Email: data.Email || '',
-          NgaySinh: data.NgaySinh ? data.NgaySinh.split('T')[0] : '', // format YYYY-MM-DD
+          NgaySinh: data.NgaySinh ? data.NgaySinh.split('T')[0] : '',
           GioiTinh: data.GioiTinh || '',
           Avatar: data.Avatar || '',
         });
@@ -49,45 +52,30 @@ const Profile = () => {
 
   return (
     <div className="container">
-      <h2>Đổi mật khẩu & Thông tin cá nhân</h2>
+      <h2>Thông tin cá nhân</h2>
       <Formik
-        initialValues={initialValues}
-        enableReinitialize // 🟡 Cho phép cập nhật initialValues khi state thay đổi
+        initialValues={profileValues}
+        enableReinitialize
         validationSchema={Yup.object({
-          oldPassword: Yup.string().required('Bắt buộc'),
-          newPassword: Yup.string().min(6, 'Tối thiểu 6 ký tự').required('Bắt buộc'),
           HoTen: Yup.string().required('Bắt buộc'),
           Email: Yup.string().email('Email không hợp lệ').required('Bắt buộc'),
           NgaySinh: Yup.date().nullable().typeError('Ngày sinh không hợp lệ'),
           GioiTinh: Yup.string().oneOf(['Nam', 'Nữ', 'Khác'], 'Giới tính không hợp lệ'),
           Avatar: Yup.string().url('Avatar phải là URL hợp lệ'),
         })}
-        onSubmit={async (values, { setSubmitting, setStatus }) => {
+        onSubmit={async (values, { setSubmitting }) => {
           try {
-            await changePassword(values, token);
-            setStatus('Cập nhật thành công!');
+            await updateProfile(values, token);
+            setProfileStatus('Cập nhật thông tin thành công!');
           } catch (err) {
-            setStatus(err.response?.data?.message || 'Thất bại!');
+            setProfileStatus(err.response?.data?.message || 'Cập nhật thông tin thất bại!');
           } finally {
             setSubmitting(false);
           }
         }}
       >
-        {({ isSubmitting, status }) => (
+        {({ isSubmitting }) => (
           <Form>
-            {/* Mật khẩu */}
-            <div className="mb-3">
-              <label>Mật khẩu cũ</label>
-              <Field name="oldPassword" type="password" className="form-control" />
-              <ErrorMessage name="oldPassword" component="div" className="text-danger" />
-            </div>
-            <div className="mb-3">
-              <label>Mật khẩu mới</label>
-              <Field name="newPassword" type="password" className="form-control" />
-              <ErrorMessage name="newPassword" component="div" className="text-danger" />
-            </div>
-
-            {/* Thông tin cá nhân */}
             <div className="mb-3">
               <label>Họ tên</label>
               <Field name="HoTen" className="form-control" />
@@ -119,17 +107,59 @@ const Profile = () => {
               <ErrorMessage name="Avatar" component="div" className="text-danger" />
             </div>
 
-            {/* Status và nút */}
-            {status && <div className="mb-2 text-info">{status}</div>}
-            <button type="submit" className="btn btn-warning me-2" disabled={isSubmitting}>
-              Cập nhật
-            </button>
-            <button type="button" className="btn btn-danger" onClick={handleDelete}>
-              Xóa tài khoản
+            {profileStatus && <div className="mb-2 text-info">{profileStatus}</div>}
+            <button type="submit" className="btn btn-primary me-2" disabled={isSubmitting}>
+              Cập nhật thông tin
             </button>
           </Form>
         )}
       </Formik>
+
+      <h2 className="mt-4">Đổi mật khẩu</h2>
+      <Formik
+        initialValues={passwordValues}
+        validationSchema={Yup.object({
+          oldPassword: Yup.string().required('Bắt buộc'),
+          newPassword: Yup.string().min(6, 'Tối thiểu 6 ký tự').required('Bắt buộc'),
+        })}
+        onSubmit={async (values, { setSubmitting, resetForm }) => {
+          try {
+            await changePassword(values, token);
+            setPasswordStatus('Đổi mật khẩu thành công!');
+            resetForm();
+          } catch (err) {
+            setPasswordStatus(err.response?.data?.message || 'Đổi mật khẩu thất bại!');
+          } finally {
+            setSubmitting(false);
+          }
+        }}
+      >
+        {({ isSubmitting }) => (
+          <Form>
+            <div className="mb-3">
+              <label>Mật khẩu cũ</label>
+              <Field name="oldPassword" type="password" className="form-control" />
+              <ErrorMessage name="oldPassword" component="div" className="text-danger" />
+            </div>
+            <div className="mb-3">
+              <label>Mật khẩu mới</label>
+              <Field name="newPassword" type="password" className="form-control" />
+              <ErrorMessage name="newPassword" component="div" className="text-danger" />
+            </div>
+
+            {passwordStatus && <div className="mb-2 text-info">{passwordStatus}</div>}
+            <button type="submit" className="btn btn-warning me-2" disabled={isSubmitting}>
+              Đổi mật khẩu
+            </button>
+          </Form>
+        )}
+      </Formik>
+
+      <div className="mt-4">
+        <button type="button" className="btn btn-danger" onClick={handleDelete}>
+          Xóa tài khoản
+        </button>
+      </div>
     </div>
   );
 };
