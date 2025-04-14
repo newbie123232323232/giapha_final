@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { loadGroupChatMessages, saveGroupChatMessages } from '../utils/groupChatUtils'; // Import utils
+import './GroupChat.css';
 
 const GroupChat = () => {
   const [messages, setMessages] = useState([]);
@@ -38,36 +39,44 @@ const GroupChat = () => {
     setInput(''); // Reset input sau khi gửi
   };
 
+  // Hàm format thời gian
+  const formatTime = (timestamp) => {
+    const date = new Date(timestamp);
+    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  };
+
   return (
-    <div style={{ padding: '20px' }}>
-      <h2>Group Chat</h2>
-      <div style={{ maxHeight: '300px', overflowY: 'auto', border: '1px solid #ccc', padding: '10px', marginBottom: '10px' }}>
+    <div className="group-chat-container">
+      <div className="chat-header">
+        <h2 className="mb-0">Group Chat</h2>
+      </div>
+      
+      <div className="chat-messages">
         {messages.map((msg, idx) => (
           <div
             key={idx}
-            style={{
-              textAlign: msg.sender === currentUser.name ? 'right' : 'left',
-              marginBottom: '10px',
-              backgroundColor: msg.sender === currentUser.name ? '#d1e7dd' : '#f8d7da',
-              padding: '8px',
-              borderRadius: '8px',
-              maxWidth: '70%',
-              marginLeft: msg.sender === currentUser.name ? 'auto' : 0,
-              marginRight: msg.sender === currentUser.name ? 0 : 'auto'
-            }}
+            className={`message ${msg.sender === currentUser.name ? 'sent' : 'received'}`}
           >
-            <strong>{msg.sender}</strong>: {msg.content}
+            <div className="message-sender">{msg.sender}</div>
+            <div className="message-content">{msg.content}</div>
+            <div className="message-time">{formatTime(msg.timestamp)}</div>
           </div>
         ))}
       </div>
-      <input
-        type="text"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        placeholder="Nhập tin nhắn..."
-        style={{ width: '80%', padding: '8px', marginRight: '8px' }}
-      />
-      <button onClick={handleSend}>Gửi</button>
+
+      <div className="chat-input-container">
+        <input
+          type="text"
+          className="chat-input"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          placeholder="Nhập tin nhắn..."
+          onKeyPress={(e) => e.key === 'Enter' && handleSend()}
+        />
+        <button className="send-button" onClick={handleSend}>
+          Gửi
+        </button>
+      </div>
     </div>
   );
 };
