@@ -54,6 +54,12 @@ const Header = () => {
                     <i className="bi bi-person me-1"></i> Tài khoản
                   </span>
                 </li>
+                {/* Thêm nút Group Chat */}
+                <li className="nav-item">
+                  <span className="nav-link" onClick={() => navigate('/group-chat')}>
+                    <i className="bi bi-chat me-1"></i> Group Chat
+                  </span>
+                </li>
                 <li className="nav-item">
                   <button className="btn btn-outline-light ms-2" onClick={handleLogout}>
                     <i className="bi bi-box-arrow-right me-1"></i> Đăng xuất
@@ -64,7 +70,7 @@ const Header = () => {
             
             {!token && (
               <li className="nav-item">
-                <button className="btn btn-primary" onClick={() => navigate('/')}>
+                <button className="btn btn-primary" onClick={() => navigate('/login')}>
                   <i className="bi bi-box-arrow-in-right me-1"></i> Đăng nhập
                 </button>
               </li>

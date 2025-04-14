@@ -1,0 +1,13 @@
+[
+    {
+      "sender": "Alice",
+      "content": "Chào mọi người!",
+      "timestamp": "2025-04-14T10:00:00Z"
+    },
+    {
+      "sender": "Bob",
+      "content": "Hello Alice!",
+      "timestamp": "2025-04-14T10:01:00Z"
+    }
+  ]
+  

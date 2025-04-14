@@ -20,6 +20,7 @@ const Login = () => {
           try {
             const res = await login(values);
             saveToken(res.data.token);
+            localStorage.setItem('currentUser', JSON.stringify(res.data.user));
             navigate('/');
           } catch (err) {
             setStatus('Sai email hoặc mật khẩu');
