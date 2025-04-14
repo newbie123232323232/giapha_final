@@ -1,0 +1,32 @@
+{
+  "events": [
+    {
+      "id": 1,
+      "tenSuKien": "Lễ giỗ tổ họ Nguyễn",
+      "ngayToChuc": "2024-12-15",
+      "moTa": "Lễ giỗ tổ hàng năm của dòng họ Nguyễn, tổ chức tại đình làng.",
+      "createdAt": "2024-04-15T08:30:00"
+    },
+    {
+      "id": 2,
+      "tenSuKien": "Họp mặt gia đình cuối năm",
+      "ngayToChuc": "2024-12-30",
+      "moTa": "Gặp mặt tất cả thành viên trong gia đình, chia sẻ kết quả năm qua và kế hoạch năm mới.",
+      "createdAt": "2024-04-16T10:15:00"
+    },
+    {
+      "id": 3,
+      "tenSuKien": "Kỷ niệm ngày cưới ông bà",
+      "ngayToChuc": "2024-09-10",
+      "moTa": "Kỷ niệm 50 năm ngày cưới của ông bà, tổ chức tại nhà hàng với sự tham gia của toàn thể con cháu.",
+      "createdAt": "2024-04-17T14:20:00"
+    },
+    {
+      "id": 4,
+      "tenSuKien": "Sinh nhật cụ Nguyễn Văn A",
+      "ngayToChuc": "2024-07-25",
+      "moTa": "Lễ mừng thọ 90 tuổi của cụ Nguyễn Văn A, trưởng tộc họ Nguyễn.",
+      "createdAt": "2024-04-18T09:45:00"
+    }
+  ]
+} 

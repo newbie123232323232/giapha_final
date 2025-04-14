@@ -1,0 +1,53 @@
+{
+  "trees": [
+    {
+      "idCayGiaPha": 1,
+      "tenCayGiaPha": "Gia phả họ Nguyễn",
+      "moTa": "Gia phả họ Nguyễn tại TPHCM",
+      "ngayTao": "2024-04-14",
+      "members": [
+        {
+          "idThanhVien": 1,
+          "ten": "Nguyễn Văn A",
+          "layer": 1,
+          "ngaySinh": "1950-01-01",
+          "ngayMat": null,
+          "gioiTinh": "Nam",
+          "moTa": "Ông tổ",
+          "spouse": {
+            "idThanhVien": 2,
+            "ten": "Trần Thị B",
+            "ngaySinh": "1952-02-02",
+            "ngayMat": null,
+            "gioiTinh": "Nữ",
+            "moTa": "Bà tổ"
+          },
+          "children": [
+            {
+              "idThanhVien": 3,
+              "ten": "Nguyễn Văn C",
+              "layer": 2,
+              "ngaySinh": "1975-03-03",
+              "ngayMat": null,
+              "gioiTinh": "Nam",
+              "moTa": "Con trai cả",
+              "spouse": null,
+              "children": []
+            },
+            {
+              "idThanhVien": 4,
+              "ten": "Nguyễn Thị D",
+              "layer": 2,
+              "ngaySinh": "1978-04-04",
+              "ngayMat": null,
+              "gioiTinh": "Nữ",
+              "moTa": "Con gái thứ",
+              "spouse": null,
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+} 
