@@ -1,0 +1,23 @@
+[
+    {
+      "name": "Ảnh 1",
+      "type": "image",
+      "path": "Tailieu/image1.jpg",
+      "description": "Hình chụp gia đình năm 2020",
+      "dateAdded": "2024-04-15"
+    },
+    {
+      "name": "Ảnh 2",
+      "type": "image",
+      "path": "Tailieu/image2.jpg",
+      "description": "Hình chụp gia đình năm 20211",
+      "dateAdded": "2021-04-15"
+    },
+    {
+      "name": "Ảnh 3",
+      "type": "image",
+      "path": "Tailieu/image3.jpg",
+      "description": "Hình chụp gia đình năm 20222",
+      "dateAdded": "2022-04-15"
+    }
+  ]

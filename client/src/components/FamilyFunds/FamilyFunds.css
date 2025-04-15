@@ -1,0 +1,234 @@
+.family-funds-container {
+  padding: 2rem;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+.family-funds-header {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.family-funds-title {
+  color: #2c3e50;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.search-box {
+  width: 300px;
+}
+
+.family-funds-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.family-fund-card {
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.family-fund-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.family-fund-card-body {
+  padding: 1.25rem;
+  flex-grow: 1;
+}
+
+.family-fund-card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 0.75rem;
+}
+
+.family-fund-card-description {
+  color: #6c757d;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.family-fund-card-balance {
+  font-weight: 600;
+  color: #28a745;
+  margin-bottom: 1rem;
+}
+
+.family-fund-card-qr {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.family-fund-card-qr img {
+  max-width: 150px;
+  height: auto;
+}
+
+.family-fund-card-footer {
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-top: 1px solid #dee2e6;
+  border-radius: 0 0 0.5rem 0.5rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.family-funds-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+}
+
+/* Modal styles */
+.modal {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-dialog {
+  margin: 1.75rem auto;
+}
+
+.modal-content {
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+  border-bottom: 1px solid #dee2e6;
+  padding: 1rem;
+}
+
+.modal-title {
+  margin: 0;
+  font-weight: 600;
+}
+
+.modal-body {
+  padding: 1rem;
+}
+
+.modal-footer {
+  border-top: 1px solid #dee2e6;
+  padding: 1rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* Fund details styles */
+.fund-details {
+  padding: 1rem;
+}
+
+.fund-qr {
+  text-align: center;
+  margin: 1.5rem 0;
+}
+
+.fund-qr img {
+  max-width: 200px;
+  height: auto;
+}
+
+.fund-transactions {
+  margin-top: 1.5rem;
+}
+
+.fund-transactions h6 {
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.table {
+  width: 100%;
+  margin-bottom: 1rem;
+  background-color: transparent;
+}
+
+.table th,
+.table td {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+}
+
+.table thead th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #dee2e6;
+  background-color: #f8f9fa;
+}
+
+/* Form styles */
+.form-label {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.form-control,
+.form-select {
+  border-radius: 0.25rem;
+  border: 1px solid #ced4da;
+  padding: 0.5rem 0.75rem;
+  width: 100%;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Button styles */
+.btn {
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #0069d9;
+  border-color: #0062cc;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
+} 

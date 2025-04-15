@@ -1,0 +1,45 @@
+{
+  "funds": [
+    {
+      "id": "fund1",
+      "name": "Quỹ cà phê",
+      "description": "Quỹ dành cho các buổi cà phê gia đình",
+      "createdAt": "2024-01-01",
+      "currentBalance": 5000000,
+      "qrCode": "/images/qr-coffee.png",
+      "transactions": [
+        {
+          "id": "trans1",
+          "amount": 1000000,
+          "contributor": "Anh A",
+          "date": "2024-01-01",
+          "type": "deposit"
+        },
+        {
+          "id": "trans2",
+          "amount": 500000,
+          "contributor": "Chị B",
+          "date": "2024-01-02",
+          "type": "deposit"
+        }
+      ]
+    },
+    {
+      "id": "fund2",
+      "name": "Quỹ nhậu",
+      "description": "Quỹ dành cho các buổi nhậu cuối tuần",
+      "createdAt": "2024-01-15",
+      "currentBalance": 3000000,
+      "qrCode": "/images/qr-beer.png",
+      "transactions": [
+        {
+          "id": "trans3",
+          "amount": 2000000,
+          "contributor": "Chú C",
+          "date": "2024-01-15",
+          "type": "deposit"
+        }
+      ]
+    }
+  ]
+} 

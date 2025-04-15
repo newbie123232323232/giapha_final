@@ -1,0 +1,17 @@
+[
+    {
+      "name": "Ảnh 1",
+      "type": "image",
+      "path": "Tailieu/image1.jpg"
+    },
+    {
+      "name": "Ảnh 2",
+      "type": "image",
+      "path": "Tailieu/image2.jpg"
+    },
+    {
+      "name": "Ảnh 3",
+      "type": "image",
+      "path": "Tailieu/image3.jpg"
+    }
+  ]

@@ -47,33 +47,33 @@ const Home = () => {
             <div className="col-md-5">
               <div className="auth-card card shadow">
                 <div className="card-body p-4">
-                  {!isLoggedIn ? (
-                    <>
-                      {showRegister ? (
-                        <>
+      {!isLoggedIn ? (
+        <>
+          {showRegister ? (
+            <>
                           <h2 className="text-center mb-4">Đăng ký tài khoản</h2>
-                          <RegisterForm onSwitchToLogin={() => setShowRegister(false)} />
+              <RegisterForm onSwitchToLogin={() => setShowRegister(false)} />
                           <p className="text-center mt-3">
-                            Đã có tài khoản?{' '}
+                Đã có tài khoản?{' '}
                             <button className="btn btn-link p-0" onClick={() => setShowRegister(false)}>
-                              Đăng nhập
-                            </button>
-                          </p>
-                        </>
-                      ) : (
-                        <>
+                  Đăng nhập
+                </button>
+              </p>
+            </>
+          ) : (
+            <>
                           <h2 className="text-center mb-4">Đăng nhập</h2>
-                          <LoginForm onLoginSuccess={handleLoginSuccess} />
+              <LoginForm onLoginSuccess={handleLoginSuccess} />
                           <p className="text-center mt-3">
-                            Chưa có tài khoản?{' '}
+                Chưa có tài khoản?{' '}
                             <button className="btn btn-link p-0" onClick={() => setShowRegister(true)}>
-                              Đăng ký
-                            </button>
-                          </p>
-                        </>
-                      )}
-                    </>
-                  ) : (
+                  Đăng ký
+                </button>
+              </p>
+            </>
+          )}
+        </>
+      ) : (
                     <div className="text-center welcome-card">
                       <i className="bi bi-check-circle-fill text-success welcome-icon"></i>
                       <h2 className="my-3">Chào mừng bạn đã đăng nhập!</h2>

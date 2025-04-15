@@ -18,25 +18,25 @@ const Header = () => {
           <i className="bi bi-diagram-3-fill me-2"></i>
           <span className="brand-text">Gia Phả Việt</span>
         </span>
-        
-        <button 
-          className="navbar-toggler" 
-          type="button" 
-          data-bs-toggle="collapse" 
-          data-bs-target="#navbarNav" 
-          aria-controls="navbarNav" 
-          aria-expanded="false" 
+
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
           aria-label="Toggle navigation"
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        
+
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
               <span className="nav-link" onClick={() => navigate('/')}>Trang chủ</span>
             </li>
-            
+
             {token && (
               <>
                 <li className="nav-item">
@@ -54,10 +54,20 @@ const Header = () => {
                     <i className="bi bi-person me-1"></i> Tài khoản
                   </span>
                 </li>
-                {/* Thêm nút Group Chat */}
                 <li className="nav-item">
                   <span className="nav-link" onClick={() => navigate('/group-chat')}>
                     <i className="bi bi-chat me-1"></i> Group Chat
+                  </span>
+                </li>
+                {/* ✅ Thêm menu tài liệu */}
+                <li className="nav-item">
+                  <span className="nav-link" onClick={() => navigate('/family-images')}>
+                    <i className="bi bi-folder-symlink me-1"></i> Tài liệu gia đình
+                  </span>
+                </li>
+                <li className="nav-item">
+                  <span className="nav-link" onClick={() => navigate('/family-funds')}>
+                    <i className="bi bi-wallet me-1"></i> Quỹ gia đình
                   </span>
                 </li>
                 <li className="nav-item">
@@ -67,7 +77,7 @@ const Header = () => {
                 </li>
               </>
             )}
-            
+
             {!token && (
               <li className="nav-item">
                 <button className="btn btn-primary" onClick={() => navigate('/login')}>
