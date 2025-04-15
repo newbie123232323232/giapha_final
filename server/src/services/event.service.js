@@ -1,4 +1,4 @@
-const { Event, FamilyMember, FamilyTree } = require('../models');
+const { Event, FamilyMember, FamilyTree, ThanhVien } = require('../models');
 const { Op } = require('sequelize');
 
 // Service cho sự kiện
@@ -275,6 +275,56 @@ class EventService {
       console.error('Lỗi khi lấy danh sách sự kiện sắp tới:', error);
       throw error;
     }
+  }
+
+  async getEvents() {
+    return await Event.findAll({
+      include: [{
+        model: ThanhVien,
+        attributes: ['Ten']
+      }],
+      order: [['NgayToChuc', 'DESC']]
+    });
+  }
+
+  async getEventById(id) {
+    return await Event.findByPk(id, {
+      include: [{
+        model: ThanhVien,
+        attributes: ['Ten']
+      }]
+    });
+  }
+
+  async updateEvent(id, data) {
+    const event = await Event.findByPk(id);
+    if (!event) throw new Error('Event not found');
+    return await event.update(data);
+  }
+
+  async deleteEvent(id) {
+    const event = await Event.findByPk(id);
+    if (!event) throw new Error('Event not found');
+    return await event.destroy();
+  }
+
+  async getUpcomingEvents(days = 30) {
+    const today = new Date();
+    const futureDate = new Date();
+    futureDate.setDate(today.getDate() + days);
+
+    return await Event.findAll({
+      where: {
+        NgayToChuc: {
+          [Op.between]: [today, futureDate]
+        }
+      },
+      include: [{
+        model: ThanhVien,
+        attributes: ['Ten']
+      }],
+      order: [['NgayToChuc', 'ASC']]
+    });
   }
 }
 
